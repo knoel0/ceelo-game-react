@@ -80,9 +80,12 @@ export default function Setup() {
 
     const clickHandler = (num) => {
         setNumPlayers(num);
+        document.querySelector('form').reset();
+        setInput([]);
     }
 
     function submitHandler() {
+
         const idInit = [];
         const scoresInit = [];
         const winnerInit = [];
@@ -118,10 +121,11 @@ export default function Setup() {
 
     for (let i = 0; i < numFields; i++) {
         fields.push(<input
-            type = "text"
-            name = {"Player " + [i + 1].toString()}
-            onChange = {handleInputChange}
-            placeholder = {"Player " + [i + 1].toString()}
+            type="text"
+            required
+            name={"Player " + [i + 1].toString()}
+            onChange={handleInputChange}
+            placeholder={"Player " + [i + 1].toString()}
             style={INPUT_STYLE}
         />);
     }
@@ -137,7 +141,7 @@ export default function Setup() {
             <button style={BUTTON_STYLE_NUMBER} onClick={() => clickHandler(5)}>5</button>  
         </div>
         <div style={FORM_WRAPPER_STYLE}>
-            <form style={FORM_STYLE} onSubmit={submitHandler}>
+            <form style={FORM_STYLE} autocomplete="off" onSubmit={submitHandler}>
                 {fields}
                 <button style={BUTTON_STYLE_SUBMIT} type = "submit">Game On!</button>
             </form>
