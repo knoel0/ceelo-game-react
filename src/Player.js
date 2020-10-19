@@ -19,7 +19,7 @@ const BUTTON_STYLE = {
     border: '2px solid white'
 }
 
-export default function Player( {id, name, score, winner, active, inCurrentGame, clickHandler} ) {
+export default function Player( {id, name, score, winner, active, inCurrentGame, clickHandler, rerender} ) {
 
     const [STYLE, setSTYLE] = useState({
         display: 'flex',
@@ -32,20 +32,31 @@ export default function Player( {id, name, score, winner, active, inCurrentGame,
         width: '100%'
     })
 
-    const [dice, setDice] = useState([])
+    const [diceRoll, setDiceRoll] = useState([]);
 
     function rollDice() {
         let diceTemp = [];
         diceTemp.push(Math.floor(Math.random() * 6) + 1);
         diceTemp.push(Math.floor(Math.random() * 6) + 1);
         diceTemp.push(Math.floor(Math.random() * 6) + 1);
-        setDice(diceTemp);
+        setDiceRoll(diceTemp);
     }
 
     useEffect(() => {
-        clickHandler(id, dice);
+        if (rerender || !rerender) {
+            setDiceRoll([]);
+            setSTYLE({
+                ...STYLE,
+                border: '1px solid white'
+            });
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dice])
+    }, [rerender])
+
+    useEffect(() => {
+        clickHandler(id, diceRoll);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [diceRoll])
 
     useEffect(() => {
         if (!inCurrentGame) {
@@ -71,7 +82,7 @@ export default function Player( {id, name, score, winner, active, inCurrentGame,
         <div style = {STYLE}>
             <h1 style={NAME_STYLE}>{name}</h1>
             <h3 style={SCORE_STYLE}>{score}</h3>
-            <Roll roll = {dice} />
+            <Roll roll = {diceRoll} />
             <button style={BUTTON_STYLE}
                 onClick = {rollDice}
                 disabled = {!active}

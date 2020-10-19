@@ -16,39 +16,29 @@ export default function Game() {
     const location = useLocation();
     let history = useHistory();
 
-    const [modalState, setModalState] = useState({
-        isOpen: false,
-        message: ""
-    })
-
-    const players = [];
-
-    const clearState = {
-        playerIds: null,
-        playerNames: null,
-        scores: null,
-        winner: null,
-        activePlayer: null,
-        inCurrentGame: null
-    }
-
     const initialState = {
         playerIds: location.state.ids,
         playerNames: location.state.names,
         scores: location.state.scores,
         winner: location.state.winner,
         activePlayer: location.state.activePlayer,
-        inCurrentGame: location.state.inCurrentGame
+        inCurrentGame: location.state.inCurrentGame,
+        playerRerender: location.state.rerender
     }
-
     const [gameState, setGameState] = useState({
         playerIds: location.state.ids,
         playerNames: location.state.names,
         scores: location.state.scores,
         winner: location.state.winner,
         activePlayer: location.state.activePlayer,
-        inCurrentGame: location.state.inCurrentGame
+        inCurrentGame: location.state.inCurrentGame,
+        playerRerender: location.state.rerender
     })
+    const [modalState, setModalState] = useState({
+        isOpen: false,
+        message: ""
+    })
+    const [rerenderPlayerOnPlayAgain, setRerenderPlayerOnPlayAgain] = useState(false);
 
     const allEqual = arr => arr.every(v => v === arr[0]);
 
@@ -84,8 +74,6 @@ export default function Game() {
 
     useEffect(() => {
         if (gameState.scores.some(if_456)) {
-            console.log('456');
-            
             const index = gameState.scores.indexOf(13);
             let winnerCopy = [...gameState.winner];
             let winnerCopyItem = winnerCopy[index];
@@ -96,8 +84,6 @@ export default function Game() {
                 winner: winnerCopy
             });
         }  if (gameState.scores.some(if_123)) {
-            console.log('123');
-
             const index = gameState.scores.indexOf(-1);
             let inCurrentGameCopy = [...gameState.inCurrentGame];
             let inCurrentGameCopyItem = inCurrentGameCopy[index];
@@ -108,10 +94,7 @@ export default function Game() {
                 inCurrentGame: inCurrentGameCopy
             });
         } if (gameState.scores.every(allPlayed)) {
-            console.log('all played');
             if (allEqual(gameState.scores)) {
-                console.log('all equal');
-                
                 setGameState({
                     playerIds: initialState.playerIds,
                     playerNames: initialState.playerNames,
@@ -121,8 +104,6 @@ export default function Game() {
                     inCurrentGame: initialState.inCurrentGame
                 });
             } else if (tieAmongWinners(gameState.scores)) {
-                console.log('tie among winners');
-                
                 const winningScore = Math.max(...(gameState.scores));
                 let indexArr = [];
                 for (let i = 0; i < gameState.scores.length; i++) {
@@ -140,6 +121,7 @@ export default function Game() {
                     inCurrentGameCopy[indexArr[i]] = inCurrentGameCopyItem;
                     activePlayerCopy[indexArr[i]] = activePlayerCopyItem;
                 }
+
                 setGameState({
                     ...gameState,
                     scores: initialState.scores,
@@ -147,8 +129,6 @@ export default function Game() {
                     inCurrentGame: inCurrentGameCopy
                 });
             } else {
-                console.log('winner from gameplay');
-
                 const winningScore = Math.max(...(gameState.scores));
                 const winningScoreIndex = gameState.scores.indexOf(winningScore);
                 let winnerCopy = [...gameState.winner];
@@ -216,7 +196,6 @@ export default function Game() {
         }
 
         function updateGame (id, score, active) {
-            
             let scoresCopy = [...gameState.scores];
             let scoresCopyItem = scoresCopy[id];
             scoresCopyItem = score;
@@ -244,6 +223,8 @@ export default function Game() {
         }
     }
 
+    const players = [];
+
     for (let i = 0; i < gameState.playerNames.length; i++) {
         if (gameState.inCurrentGame[i] === true) {
             players.push(
@@ -255,6 +236,7 @@ export default function Game() {
                     active={gameState.activePlayer[i]}
                     inCurrentGame={gameState.inCurrentGame[i]}
                     clickHandler={handleClick}
+                    rerender={rerenderPlayerOnPlayAgain}
                 />
             )
         }
@@ -268,27 +250,37 @@ export default function Game() {
             <Modal
                 open={modalState.isOpen}
                 message={modalState.message}
+                onClose={() => {
+                    setModalState({
+                        isOpen: false
+                    });
+                    setRerenderPlayerOnPlayAgain(!rerenderPlayerOnPlayAgain);
+                }}  
                 onPlayAgain={() => {
                     setModalState({
                         isOpen: false,
                         message: ""
                     });
                     setGameState(initialState);
+                    setRerenderPlayerOnPlayAgain(!rerenderPlayerOnPlayAgain);
                 }}
                 onNewGame={() => {
                     setModalState({
-                        isOpen: false,
-                        message: ""
+                        isOpen: false
                     });
-                    setGameState(clearState);
+                    history.replace({
+                        pathname: '/Setup',
+                        state: { 
+                            numPlayers: 3
+                        }
+                    });
                 }}
                 onQuit={() => {
                     setModalState({
-                        isOpen: false,
-                        message: ""
+                        isOpen: false
                     });
-                    history.push({
-                        pathname: '/StartPage'
+                    history.replace({
+                        pathname: '/'
                     });
                 }}
             />

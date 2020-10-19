@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 const modal_styles = {
@@ -21,9 +21,7 @@ const overlay_styles = {
     zIndex: 1000
 }
 
-export default function Modal({open, message, onPlayAgain, onNewGame, onQuit}) {
-
-    const [buttons, setButtons] = useState()
+export default function Modal({open, message, onClose, onPlayAgain, onNewGame, onQuit}) {
     
     if (!open) { return null }    
     
@@ -32,6 +30,7 @@ export default function Modal({open, message, onPlayAgain, onNewGame, onQuit}) {
             <div style={overlay_styles} />
             <div style={modal_styles}>
                 <h1>{message}</h1>
+                <button onClick={onClose}>Close</button>
                 <button onClick={onPlayAgain}>Play Again</button>
                 <button onClick={onNewGame}>New Game</button>
                 <button onClick={onQuit}>Quit</button>

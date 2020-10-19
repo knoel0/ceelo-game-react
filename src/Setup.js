@@ -85,7 +85,6 @@ export default function Setup() {
     }
 
     function submitHandler() {
-
         const idInit = [];
         const scoresInit = [];
         const winnerInit = [];
