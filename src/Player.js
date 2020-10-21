@@ -4,12 +4,10 @@ import Roll from './Roll';
 const NAME_STYLE = {
     color: 'white'
 }
-
 const SCORE_STYLE = {
     color: 'indianred',
     fontSize: '30px'
 }
-
 const BUTTON_STYLE = {
     backgroundColor: 'indianred',
     color: 'white',
@@ -79,13 +77,13 @@ export default function Player( {id, name, score, winner, active, inCurrentGame,
     }, [winner])
     
     return (
-        <div style = {STYLE}>
+        <div style={STYLE}>
             <h1 style={NAME_STYLE}>{name}</h1>
             <h3 style={SCORE_STYLE}>{score}</h3>
-            <Roll roll = {diceRoll} />
+            <Roll roll={diceRoll} />
             <button style={BUTTON_STYLE}
-                onClick = {rollDice}
-                disabled = {!active}
+                onClick={rollDice}
+                disabled={!active}
                 >Roll
             </button>
         </div>

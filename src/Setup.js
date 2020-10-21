@@ -9,8 +9,7 @@ const MAIN_STYLE = {
     gridRowGap: '0px',
     height: '100%'
 }
-
-const H1_NUMBER_STYLE = {
+const H1_STYLE = {
     gridArea: '2 / 2 / 3 / 7',
     textAlign: 'center',
     color: 'white',
@@ -19,7 +18,6 @@ const H1_NUMBER_STYLE = {
     alignItems: 'center',
     justifyContent: 'center'
 }
-
 const BUTTONGROUP_STYLE = {
     gridArea: '3 / 2 / 4 / 7',
     display: 'flex',
@@ -27,8 +25,7 @@ const BUTTONGROUP_STYLE = {
     justifyContent: 'space-evenly',
     padding: '20px'
 }
-
-const BUTTON_STYLE_NUMBER = {
+const BUTTON_STYLE = {
     backgroundColor: 'indianred',
     color: 'white',
     fontSize: '20px',
@@ -36,32 +33,28 @@ const BUTTON_STYLE_NUMBER = {
     borderRadius: '10px',
     border: '2px solid white'
 }
-
-const BUTTON_STYLE_SUBMIT = {
-    backgroundColor: 'indianred',
-    color: 'white',
-    fontSize: '20px',
-    padding: '12px 20px',
-    borderRadius: '5px',
-    border: '2px solid white'
-}
-
 const FORM_WRAPPER_STYLE = {
     gridArea: '4 / 2 / 7 / 7',
     padding: '10px 30px 0px'
 }
-
 const FORM_STYLE = {
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-around'
 }
-
 const INPUT_STYLE = {
     padding: '12px 20px',
     border: '2px solid indianred',
     borderRadius: '5px'
+}
+const FORM_SUBMITBTN_STYLE = {
+    backgroundColor: 'indianred',
+    color: 'white',
+    fontSize: '20px',
+    padding: '12px 20px',
+    borderRadius: '5px',
+    border: '2px solid white'
 }
 
 export default function Setup() {
@@ -131,18 +124,18 @@ export default function Setup() {
 
     return (
         <div style={MAIN_STYLE}>
-        <div style={H1_NUMBER_STYLE}>
+        <div style={H1_STYLE}>
             <h1>Select the number of players:</h1>
         </div>
         <div style={BUTTONGROUP_STYLE}>
-            <button style={BUTTON_STYLE_NUMBER} onClick={() => clickHandler(3)}>3</button>
-            <button style={BUTTON_STYLE_NUMBER} onClick={() => clickHandler(4)}>4</button>
-            <button style={BUTTON_STYLE_NUMBER} onClick={() => clickHandler(5)}>5</button>  
+            <button style={BUTTON_STYLE} onClick={() => clickHandler(3)}>3</button>
+            <button style={BUTTON_STYLE} onClick={() => clickHandler(4)}>4</button>
+            <button style={BUTTON_STYLE} onClick={() => clickHandler(5)}>5</button>  
         </div>
         <div style={FORM_WRAPPER_STYLE}>
             <form style={FORM_STYLE} autocomplete="off" onSubmit={submitHandler}>
                 {fields}
-                <button style={BUTTON_STYLE_SUBMIT} type = "submit">Game On!</button>
+                <button style={FORM_SUBMITBTN_STYLE} type="submit">Game On!</button>
             </form>
         </div>
         </div>

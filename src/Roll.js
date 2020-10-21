@@ -7,15 +7,14 @@ import DieFour from './images/die4.png';
 import DieFive from './images/die5.png';
 import DieSix from './images/die6.png';
 
-const IMG_STYLE = {
-    height: '100%',
-    width: '33%'
-}
-
 const IMG_WRAPPER_STYLE = {
     display: 'flex',
     flexDirection: 'row',
     width: '100%'
+}
+const IMG_STYLE = {
+    height: '100%',
+    width: '33%'
 }
 
 export default function Roll( {roll} ) {

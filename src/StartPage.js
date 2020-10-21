@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 
-const STYLES = {
+const MAIN_STYLE = {
     display: 'grid',
     gridTemplateColumns: 'repeat(7, 1fr)',
     gridTemplateRows: 'repeat(7, 1fr)',
@@ -9,8 +9,7 @@ const STYLES = {
     gridRowGap: '0px',
     height: '100%'
 }
-
-const H1_STYLES = {
+const H1_STYLE = {
     gridArea: '2 / 2 / 4 / 7',
     textAlign: 'center',
     color: 'white',
@@ -19,8 +18,7 @@ const H1_STYLES = {
     alignItems: 'center',
     justifyContent: 'center'
 }
-
-const BUTTON_STYLES = {
+const BUTTON_STYLE = {
     gridArea: '5 / 2 / 7 / 7',
     backgroundColor: 'indianred',
     color: 'white',
@@ -38,11 +36,11 @@ export default function StartPage() {
     let history = useHistory();
 
     return (
-        <div style={STYLES}>
-            <div style={H1_STYLES}>
+        <div style={MAIN_STYLE}>
+            <div style={H1_STYLE}>
                 <h1>Cee-Lo</h1>
             </div>
-            <button style={BUTTON_STYLES}
+            <button style={BUTTON_STYLE}
                 onClick = {() =>
                     history.push({
                         pathname: '/Setup'
