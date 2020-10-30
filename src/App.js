@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import StartPage from './StartPage';
-import Setup from './Setup';
-import Game from './Game';
+import StartPage from './pages/startpage';
+import Setup from './pages/setup';
+import Game from './pages/game';
 
 const MAIN_STYLE = {
   backgroundColor: 'lightcoral',

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom';
-import Player from './Player';
-import Modal from './Modal';
+import Player from '../components/Player';
+import Modal from '../components/Modal';
 
 const GAME_STYLE = {
     height: '100%',
