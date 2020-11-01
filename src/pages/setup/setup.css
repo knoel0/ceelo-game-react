@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 100%;
+}
+
+.text-container {
+    grid-area: 2 / 2 / 3 / 7;
+}
+
+.text-container h1 {
+    text-align: center;
+    color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+}
+
+.button-container {
+    grid-area: 3 / 2 / 4 / 7;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.button-container button {
+    background-color: indianred;
+    color: white;
+    font-family: 'Cabin', sans-serif;
+    font-size: 20px;
+    padding: 12px 28px;
+    border-radius: 10px;
+    border: 2px solid white;
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
+.button-container button:hover {
+    opacity: 1;
+}
+
+.button-container button:active {
+    opacity: 1;
+}
+
+.form-container {
+    grid-area: 4 / 2 / 7 / 7;
+    padding: 10px 30px 0px;
+}
+
+form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+form input {
+    padding: 12px 20px;
+    border: 2px solid indianred;
+    border-radius: 5px;
+    font-family: 'Cabin', sans-serif;
+}
+
+form button {
+    background-color: indianred;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: 2px solid white;
+    font-size: 20px;
+    font-family: 'Cabin', sans-serif;
+}

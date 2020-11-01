@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    height: 100%;
+}
+
+.text-container {
+    grid-area: 2 / 2 / 4 / 7;
+}
+
+.text-container h1 {
+    text-align: center;
+    color: white;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lobster', cursive;
+    font-size: 100px;
+}
+
+.startBtn {
+    grid-area: 5 / 2 / 7 / 7;
+    background-color: indianred;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: 2px solid white;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    opacity: 0.8;
+    transition: 0.3s;
+    font-family: 'Cabin', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.startBtn:hover {
+    opacity: 1;
+}
