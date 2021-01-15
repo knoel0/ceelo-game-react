@@ -1,17 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(7, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
     height: 100%;
+    background-color: #636E72;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    column-gap: 0px;
+    row-gap: 0px;
 }
-
 .text-container {
-    grid-area: 2 / 2 / 4 / 7;
+    grid-area: 2 / 2 / 6 / 9;
+    display: flex;
 }
 
 .text-container h1 {
@@ -21,13 +22,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Lobster', cursive;
+    font-family: 'Roboto', sans-serif;
     font-size: 100px;
 }
 
 .startBtn {
-    grid-area: 5 / 2 / 7 / 7;
-    background-color: indianred;
+    grid-area: 7 / 2 / 9 / 9;
+    background-color: #B2BEC3;
     color: white;
     padding: 12px 28px;
     border-radius: 12px;

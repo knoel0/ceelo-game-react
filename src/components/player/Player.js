@@ -10,7 +10,7 @@ export default function Player( {id, name, score, winner, active, inCurrentGame,
         justifyContent: 'space-evenly',
         padding: '0px 20px',
         textAlign: 'center',
-        backgroundColor: 'lightcoral',
+        backgroundColor: '#636E72',
         border: '1px solid white',
         width: '100%'
     })

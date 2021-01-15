@@ -1,7 +1,7 @@
-.main {
+.mainstyle {
     height: 100%;
     display: flex;
     flex-direction: row;
     align-content: center;
-    background-color: lightcoral;
+    background-color: #636E72;
 }
