@@ -8,7 +8,7 @@ import './App.css';
 export default function App() {
 
   return (
-    <div className="app">
+    <div className="app-wrapper">
       <Switch>
         <Route exact path = '/' component={StartPage} />
         <Route exact path = '/Setup' component={Setup} />

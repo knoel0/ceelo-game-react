@@ -228,7 +228,10 @@ export default function Game() {
                 ...modalState,
                 isOpen: true,
                 message: "" + gameState.playerNames[index] + " has been eliminated.",
-                buttons: {...modalState.buttons, closeBtn: {...modalState.buttons.closeBtn, enabled: true}}
+                buttons: {
+                    ...modalState.buttons,
+                    closeBtn: {...modalState.buttons.closeBtn, enabled: true}
+                }
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -312,7 +315,7 @@ export default function Game() {
 
     return (       
         <>
-        <div className="main">
+        <div className="mainstyle">
             {players}
         </div>
         <Modal state={modalState} />

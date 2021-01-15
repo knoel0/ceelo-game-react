@@ -1,17 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-template-rows: repeat(7, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
     height: 100%;
+    background-color: #636E72;
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+    column-gap: 0px;
+    row-gap: 0px;
 }
-
 .text-container {
-    grid-area: 2 / 2 / 3 / 7;
+    grid-area: 2 / 2 / 3 / 9;
 }
 
 .text-container h1 {
@@ -21,12 +21,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Lobster', cursive;
+    font-family: 'Roboto', sans-serif;
     font-size: 30px;
 }
 
 .button-container {
-    grid-area: 3 / 2 / 4 / 7;
+    grid-area: 3 / 2 / 5 / 9;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -34,7 +34,7 @@
 }
 
 .button-container button {
-    background-color: indianred;
+    background-color: #B2BEC3;
     color: white;
     font-family: 'Cabin', sans-serif;
     font-size: 20px;
@@ -54,7 +54,7 @@
 }
 
 .form-container {
-    grid-area: 4 / 2 / 7 / 7;
+    grid-area: 5 / 2 / 9 / 9;
     padding: 10px 30px 0px;
 }
 
@@ -73,7 +73,7 @@ form input {
 }
 
 form button {
-    background-color: indianred;
+    background-color: #B2BEC3;
     color: white;
     padding: 12px 20px;
     border-radius: 5px;
