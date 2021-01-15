@@ -1,21 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Roll from './Roll';
-
-const NAME_STYLE = {
-    color: 'white'
-}
-const SCORE_STYLE = {
-    color: 'indianred',
-    fontSize: '30px'
-}
-const BUTTON_STYLE = {
-    backgroundColor: 'indianred',
-    color: 'white',
-    fontSize: '20px',
-    padding: '12px 28px',
-    borderRadius: '12px',
-    border: '2px solid white'
-}
+import Roll from '../roll/Roll';
+import './Player.css';
 
 export default function Player( {id, name, score, winner, active, inCurrentGame, clickHandler, rerender} ) {
 
@@ -78,10 +63,10 @@ export default function Player( {id, name, score, winner, active, inCurrentGame,
     
     return (
         <div style={STYLE}>
-            <h1 style={NAME_STYLE}>{name}</h1>
-            <h3 style={SCORE_STYLE}>{score}</h3>
+            <h1 className="name">{name}</h1>
+            <h3 className="score">{score}</h3>
             <Roll roll={diceRoll} />
-            <button style={BUTTON_STYLE}
+            <button className="btn"
                 onClick={rollDice}
                 disabled={!active}
                 >Roll

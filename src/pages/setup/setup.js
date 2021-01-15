@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import './setup.css';
+import './Setup.css';
 
 export default function Setup() {
 

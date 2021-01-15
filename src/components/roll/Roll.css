@@ -1,0 +1,10 @@
+.img_wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.img {
+    height: 100%;
+    width: 33%;
+}

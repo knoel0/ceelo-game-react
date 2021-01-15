@@ -1,19 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import StartPage from './pages/startpage/startpage';
-import Setup from './pages/setup/setup';
-import Game from './pages/game/game';
-
-const MAIN_STYLE = {
-  backgroundColor: 'lightcoral',
-  height: '100%',
-  gridArea: '2 / 2 / 7 / 7'
-}
+import StartPage from './pages/startpage/StartPage';
+import Setup from './pages/setup/Setup';
+import Game from './pages/game/Game';
+import './App.css';
 
 export default function App() {
 
   return (
-    <div style={MAIN_STYLE}>
+    <div className="app">
       <Switch>
         <Route exact path = '/' component={StartPage} />
         <Route exact path = '/Setup' component={Setup} />
