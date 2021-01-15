@@ -1,0 +1,16 @@
+.name {
+    color: #FFF;
+}
+
+.score {
+    color: indianred;
+}
+
+.btn {
+    background-color: indianred;
+    color: white;
+    font-size: 20px;
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: 2px solid white;
+}

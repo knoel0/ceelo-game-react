@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import './startpage.css';
+import './StartPage.css';
 
 export default function StartPage() {
 

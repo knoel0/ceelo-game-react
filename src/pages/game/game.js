@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, useLocation } from 'react-router-dom';
-import Player from '../../components/Player';
-import Modal from '../../components/Modal';
-
-const GAME_STYLE = {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    alignContent: 'center',
-    backgroundColor: 'lightcoral'
-};
+import Player from '../../components/player/Player';
+import Modal from '../../components/modal/Modal';
+import './Game.css';
 
 export default function Game() {
 
@@ -34,10 +27,66 @@ export default function Game() {
         inCurrentGame: location.state.inCurrentGame,
         playerRerender: location.state.rerender
     })
+
     const [modalState, setModalState] = useState({
         isOpen: false,
-        message: ""
+        message: "",
+        buttons: {
+            closeBtn: {
+                name: "Close",
+                enabled: false,
+                onClick: () => { 
+                    setModalState({
+                        isOpen: false,
+                        message: ""
+                    });
+                    setRerenderPlayerOnPlayAgain(!rerenderPlayerOnPlayAgain);
+                }
+            },
+            playAgainBtn: {
+                name: "Play Again",
+                enabled: false,
+                onClick: () => {
+                    setModalState({
+                        isOpen: false,
+                        message: ""
+                    });
+                    setGameState(initialState);
+                    setRerenderPlayerOnPlayAgain(!rerenderPlayerOnPlayAgain);
+                }
+            },
+            newGameBtn: {
+                name: "New Game",
+                enabled: false,
+                onClick: () => {
+                    setModalState({
+                        isOpen: false,
+                        message: ""
+                    });
+                    history.replace({
+                        pathname: '/Setup',
+                        state: { 
+                            numPlayers: 3
+                        }
+                    });
+                }
+            },
+            quitBtn: {
+                name: "Quit",
+                enabled: false,
+                onClick: () => {
+                    setModalState({
+                        isOpen: false,
+                        message: ""
+                    });
+                    history.replace({
+                        pathname: '/'
+                    });
+                }
+            }
+        } 
     })
+
     const [rerenderPlayerOnPlayAgain, setRerenderPlayerOnPlayAgain] = useState(false);
 
     const allEqual = arr => arr.every(v => v === arr[0]);
@@ -127,6 +176,13 @@ export default function Game() {
                     scores: initialState.scores,
                     activePlayer: activePlayerCopy,
                     inCurrentGame: inCurrentGameCopy
+                })
+                
+                setModalState({
+                    ...modalState,
+                    isOpen: true,
+                    message: "Tie!",
+                    buttons: {...modalState.buttons, closeBtn: {...modalState.buttons.closeBtn, enabled: true}}
                 });
             } else {
                 const winningScore = Math.max(...(gameState.scores));
@@ -147,9 +203,17 @@ export default function Game() {
     useEffect(() => {
         if (gameState.winner.some(ifWinner)) {
             const index = gameState.winner.indexOf(true);
+            
             setModalState({
+                ...modalState,
                 isOpen: true,
-                message: "" + gameState.playerNames[index] + " Won!"
+                message: "" + gameState.playerNames[index] + " Won!",
+                buttons: {
+                    ...modalState.buttons,
+                    playAgainBtn: {...modalState.buttons.playAgainBtn, enabled: true},
+                    newGameBtn: {...modalState.buttons.newGameBtn, enabled: true},
+                    quitBtn: {...modalState.buttons.quitBtn, enabled: true},
+                }
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -157,10 +221,14 @@ export default function Game() {
 
     useEffect(() => {
         if (gameState.inCurrentGame.some(ifPlayerEliminated)) {
+            
             const index = gameState.inCurrentGame.indexOf(false);
+            
             setModalState({
+                ...modalState,
                 isOpen: true,
-                message: "" + gameState.playerNames[index] + " has been eliminated."
+                message: "" + gameState.playerNames[index] + " has been eliminated.",
+                buttons: {...modalState.buttons, closeBtn: {...modalState.buttons.closeBtn, enabled: true}}
             });
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -244,46 +312,10 @@ export default function Game() {
 
     return (       
         <>
-            <div style = {GAME_STYLE}>
-                {players}
-            </div>
-            <Modal
-                open={modalState.isOpen}
-                message={modalState.message}
-                onClose={() => {
-                    setModalState({
-                        isOpen: false
-                    });
-                    setRerenderPlayerOnPlayAgain(!rerenderPlayerOnPlayAgain);
-                }}  
-                onPlayAgain={() => {
-                    setModalState({
-                        isOpen: false,
-                        message: ""
-                    });
-                    setGameState(initialState);
-                    setRerenderPlayerOnPlayAgain(!rerenderPlayerOnPlayAgain);
-                }}
-                onNewGame={() => {
-                    setModalState({
-                        isOpen: false
-                    });
-                    history.replace({
-                        pathname: '/Setup',
-                        state: { 
-                            numPlayers: 3
-                        }
-                    });
-                }}
-                onQuit={() => {
-                    setModalState({
-                        isOpen: false
-                    });
-                    history.replace({
-                        pathname: '/'
-                    });
-                }}
-            />
+        <div className="main">
+            {players}
+        </div>
+        <Modal state={modalState} />
         </>    
     )
 }
